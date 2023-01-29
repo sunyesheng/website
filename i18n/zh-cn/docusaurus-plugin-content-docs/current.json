@@ -34,5 +34,17 @@
   "sidebar.react.category.ReactRouter": {
     "message": "ReactRouter",
     "description": "The label for category ReactRouter in sidebar react"
+  },
+  "sidebar.algorithm.category.算法模板": {
+    "message": "算法模板",
+    "description": "The label for category 算法模板 in sidebar algorithm"
+  },
+  "sidebar.工程化.category.权限设计": {
+    "message": "权限设计",
+    "description": "The label for category 权限设计 in sidebar 工程化"
+  },
+  "sidebar.技术设计.category.Design": {
+    "message": "Design",
+    "description": "The label for category Design in sidebar 技术设计"
   }
 }

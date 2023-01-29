@@ -30,5 +30,13 @@
   "item.label.Javascript": {
     "message": "Javascript",
     "description": "Navbar item with label Javascript"
+  },
+  "item.label.技术设计": {
+    "message": "技术设计",
+    "description": "Navbar item with label 技术设计"
+  },
+  "item.label.工程化": {
+    "message": "工程化",
+    "description": "Navbar item with label 工程化"
   }
 }
