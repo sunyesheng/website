@@ -28,10 +28,6 @@ module.exports = {
         src: 'img/home/logo.ico',
       },
       items: [
-        // {
-        //   type: 'localeDropdown',
-        //   position: 'left',
-        // },
         {
           to: '/',
           activeBasePath: 'blog',
