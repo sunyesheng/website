@@ -12,21 +12,18 @@ keywords:
 # image: https://i.imgur.com/mErPwqL.png
 ---
 
+## 1.模拟 call
 
-
-
-## 1.模拟call {#1模拟call}
 ```js
-
-Function.prototype.mycall = function(context = window, ...args){
-    if(this == Function.prototype){
-        return undefined;
-    }
-    context = context || window;
-    const fn = Symbol();
-    context[fn] = this;
-    const result = context[fn](...args);
-    delete context[fn]
-    return result
+Function.prototype.mycall = function (context = window, ...args) {
+  if (this == Function.prototype) {
+    return undefined
+  }
+  context = context || window
+  const fn = Symbol()
+  context[fn] = this
+  const result = context[fn](...args)
+  delete context[fn]
+  return result
 }
 ```

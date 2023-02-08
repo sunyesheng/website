@@ -12,18 +12,19 @@ keywords:
 # image: https://i.imgur.com/mErPwqL.png
 ---
 
-## 1.手动实现一个instanceof {#1手动实现一个instanceof}
+## 1.手动实现一个 instanceof
+
 ```js
-function myinstanceof(target, origin){
-    let proto = target.__proto__
-    if(proto){
-        if(proto === origin.prototype){
-            return true
-        }else{
-            return myinstanceof(proto, origin)
-        }
-    }else{
-        return false
+function myinstanceof(target, origin) {
+  let proto = target.__proto__
+  if (proto) {
+    if (proto === origin.prototype) {
+      return true
+    } else {
+      return myinstanceof(proto, origin)
     }
+  } else {
+    return false
+  }
 }
 ```

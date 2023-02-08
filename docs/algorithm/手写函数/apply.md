@@ -12,23 +12,22 @@ keywords:
 # image: https://i.imgur.com/mErPwqL.png
 ---
 
+## 2.模拟 apply
 
-## 2.模拟apply {#2模拟apply}
 ```js
-Function.prototype.myapply = function(context = window, args){
-    if(this == Function.prototype){
-        return undefined;
-    }
-    context = context || window;
-    const fn = Symbol();
-    context[fn] = this;
-    if (Array.isArray(args)) {
-        result = context[fn](...args);
-    }else {
-        result = context[fn]();
-    }
-    delete context[fn]
-    return result
+Function.prototype.myapply = function (context = window, args) {
+  if (this == Function.prototype) {
+    return undefined
+  }
+  context = context || window
+  const fn = Symbol()
+  context[fn] = this
+  if (Array.isArray(args)) {
+    result = context[fn](...args)
+  } else {
+    result = context[fn]()
+  }
+  delete context[fn]
+  return result
 }
-
 ```

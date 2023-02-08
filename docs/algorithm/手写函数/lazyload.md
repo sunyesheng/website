@@ -12,38 +12,38 @@ keywords:
 # image: https://i.imgur.com/mErPwqL.png
 ---
 
-## 12.图片懒加载 {#12图片懒加载}
-```js
+## 12.图片懒加载
 
-let imgs = document.getElementsByTagName("img");
+```js
+let imgs = document.getElementsByTagName('img')
 let n = 0
 
 lazyload()
 
 //节流函数
-function throttle(handleEvent,time){
-    let timer
-    return function(...args){
-        if(timer){
-            timer = setTimeout(() => {
-                timer = null
-                handleEvent.apply(this,args)
-            }, time);
-        }
+function throttle(handleEvent, time) {
+  let timer
+  return function (...args) {
+    if (timer) {
+      timer = setTimeout(() => {
+        timer = null
+        handleEvent.apply(this, args)
+      }, time)
     }
+  }
 }
-function lazyload(){
-    let seeHight = window.innerHeight
-    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    for(let i = n; i < imgs.length; i++){
-        if(imgs[i].offsetTop < seeHight + scrollTop){
-            if(imgs[i].getAttribute('src') == 'loading.gif'){
-                imgs[i].src = imgs[i].getAttribute('data-src');
-            }
-            n = i + 1;
-        }
+function lazyload() {
+  let seeHight = window.innerHeight
+  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+  for (let i = n; i < imgs.length; i++) {
+    if (imgs[i].offsetTop < seeHight + scrollTop) {
+      if (imgs[i].getAttribute('src') == 'loading.gif') {
+        imgs[i].src = imgs[i].getAttribute('data-src')
+      }
+      n = i + 1
     }
+  }
 }
 
-window.addEventListener('scroll',throttle())
+window.addEventListener('scroll', throttle())
 ```

@@ -12,34 +12,35 @@ keywords:
 # image: https://i.imgur.com/mErPwqL.png
 ---
 
-## 1.JS实现LRU算法 {#1js实现lru算法}
+## 1.JS 实现 LRU 算法
+
 ```js
-class LRUCache{
-    constructor(capacity){
-        this.capacity = capacity;
-        this.cache = new Map();
-    }
+class LRUCache {
+  constructor(capacity) {
+    this.capacity = capacity
+    this.cache = new Map()
+  }
 
-    get(key){
-        //如果没有,返回-1
-        if(!this.cache.has(key)) return -1;
+  get(key) {
+    //如果没有,返回-1
+    if (!this.cache.has(key)) return -1
 
-        const value = this.cache.get(key);
-        this.cache.delete(key);
-        this.cache.set(key,value)
-        return value
-    }
+    const value = this.cache.get(key)
+    this.cache.delete(key)
+    this.cache.set(key, value)
+    return value
+  }
 
-    set(key,value){
-        if(this.cache.has(key)){
-            this.cache.delete(key)
-        }else{
-            if(this.cache.size == this.capacity){
-                const delKey = this.cache.keys().next().value;
-                this.cache.delete(delKey)
-            }
-        }
-        this.cache.set(key,value)
+  set(key, value) {
+    if (this.cache.has(key)) {
+      this.cache.delete(key)
+    } else {
+      if (this.cache.size == this.capacity) {
+        const delKey = this.cache.keys().next().value
+        this.cache.delete(delKey)
+      }
     }
+    this.cache.set(key, value)
+  }
 }
 ```

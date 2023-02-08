@@ -12,33 +12,35 @@ keywords:
 # image: https://i.imgur.com/mErPwqL.png
 ---
 
-## 1.手写防抖 {#1手写防抖}
+## 1.手写防抖
+
 ```js
-function debounce(handleEvent, time, flag){
-    let timeout = null;
-    return function(...agrs){
-        clearTimeout(timeout)
-        if(flag && !timeout){
-            handleEvent.apply(this, args)
-        }
-        timeout = setTimeout(()=>{
-            handleEvent.apply(this, args)
-        },time)
+function debounce(handleEvent, time, flag) {
+  let timeout = null
+  return function (...agrs) {
+    clearTimeout(timeout)
+    if (flag && !timeout) {
+      handleEvent.apply(this, args)
     }
+    timeout = setTimeout(() => {
+      handleEvent.apply(this, args)
+    }, time)
+  }
 }
 ```
 
-## 2.手写节流 {#2手写节流}
+## 2.手写节流
+
 ```js
-function throttle(handleEvent, time){
-    let timer = null;
-    return function(...args){
-        if(!timer){
-            timer = setTimeout(() => {
-                timer = null;
-                handleEvent.apply(this, args)
-            }, time);
-        }
+function throttle(handleEvent, time) {
+  let timer = null
+  return function (...args) {
+    if (!timer) {
+      timer = setTimeout(() => {
+        timer = null
+        handleEvent.apply(this, args)
+      }, time)
     }
+  }
 }
 ```

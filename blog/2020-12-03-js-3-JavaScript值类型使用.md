@@ -13,11 +13,11 @@ Javascript 教程第三章：JavaScript 值类型使用
 
 # 一.JavaScript 值类型使用
 
-## 1.章节介绍与类型判断 {#1章节介绍与类型判断}
+## 1.章节介绍与类型判断
 
 typeof
 
-## 2.字符串转义与模板字面量使用 {#2字符串转义与模板字面量使用}
+## 2.字符串转义与模板字面量使用
 
 ```
 let hd = new String("houdunren.com")
@@ -32,7 +32,7 @@ console.log(`网站是${site}`)
 模板字面量在使用的时候不能用单引号，需要使用 ``  
 在里面可以使用变量或者函数等表达式，JSX
 
-## 3.神奇的标签模板实例操作 {#3神奇的标签模板实例操作}
+## 3.神奇的标签模板实例操作
 
 ```js
 let site = 'houdunren.com'
@@ -82,7 +82,7 @@ document.body.innerHTML += template()
 
 我们先使用模板定义三个 li，将 lessons 中的数据进行展示，后面加上 links 标签来将数据中包含 tsy 的字段更改为含有超链接的 tsy
 
-## 4.字符串基本函数使用 {#4字符串基本函数使用}
+## 4.字符串基本函数使用
 
 ```js
 let name = ' houdunren.com  '
@@ -93,7 +93,7 @@ console.log(name.trim().length)
 console.log(name.charAt(12))
 ```
 
-## 5.字符串的截取操作 {#5字符串的截取操作}
+## 5.字符串的截取操作
 
 ```js
 let name = 'houdunren.com'
@@ -111,7 +111,7 @@ slice(),俩个参数，开始位置和截取位置，负数表示从后截取
 substr()俩个参数，开始位置和要截取的个数  
 substring，俩个参数，开始位置和截取位置，负数无效，默认为 0
 
-## 6.字符串的检索操作 {#6字符串的检索操作}
+## 6.字符串的检索操作
 
 (1) indexof()
 
@@ -147,11 +147,11 @@ const hd = 'houdunren.com'
 console.log(hd.startsWith('h'))
 ```
 
-## 7.字符串替换操作 {#7字符串替换操作}
+## 7.字符串替换操作
 
 str.replace("需要更换的字符串","更换后的字符串")
 
-## 8.电话号码模糊处理 {#8电话号码模糊处理}
+## 8.电话号码模糊处理
 
 重复输出某些字符串 : str.repeat("\*",3)
 
@@ -164,7 +164,7 @@ console.log(phone(13208041555))
 输出：132********
 ```
 
-## 9.类型转换使用技巧 {#9类型转换使用技巧}
+## 9.类型转换使用技巧
 
 使用类型的构造函数或者方法
 
@@ -207,7 +207,7 @@ console.log(Array.from(str,function(item){}))
 
 ```
 
-## 10.Number 声明方式与基本函数 {#10number-声明方式与基本函数}
+## 10.Number 声明方式与基本函数
 
 (1) isInteger(number)  
 判断是否为整数类型
@@ -215,12 +215,12 @@ console.log(Array.from(str,function(item){}))
 (2) number.toFixed(2)  
 保存俩位小数
 
-## 11.数值类型转换技巧与 NaN {#11数值类型转换技巧与-nan}
+## 11.数值类型转换技巧与 NaN
 
 NaN：当我们希望是数值但结果不是数值的时候提示，NaN 是一个特殊的数值类型  
 NaN 不能和自身进行比较
 
-## 12.Math 数学计算 {#12math-数学计算}
+## 12.Math 数学计算
 
 (1) 取得最大最小值
 
@@ -247,7 +247,7 @@ Math.Fixed(2) 保留俩位小数
 (4) 随机数
 Math.random()
 
-## 13.Math.random 随机点名 {#13mathrandom-随机点名}
+## 13.Math.random 随机点名
 
 ```js
 Math.random()   0-1 含0不含1
@@ -257,7 +257,7 @@ Math.floor()
 Math.floor(Math.random() * (Max + 1))
 ```
 
-## 14.日期时间戳的使用与计算脚本使用事件 {#14日期时间戳的使用与计算脚本使用事件}
+## 14.日期时间戳的使用与计算脚本使用事件
 
 ```js
 const date = new Date()
@@ -273,7 +273,7 @@ console.time('第一个标志位名称')
 console.timeEnd('第一个标志位名称') //返回毫秒数
 ```
 
-## 15.ISO 与 TimeStamp 格式转换 {#15iso-与-timestamp-格式转换}
+## 15.ISO 与 TimeStamp 格式转换
 
 (1) 时间转换为时间戳
 
@@ -292,7 +292,7 @@ const timestamp = date.valueof()
 const ISO = new Date(date)
 ```
 
-## 16.格式化时间 {#16格式化时间}
+## 16.格式化时间
 
 ```js
 const date = new Date()
@@ -315,7 +315,7 @@ function dateFormat(date, format = 'YYYY-MM-DD HH:mm:ss') {
 console.log(dateFormat(date, (format = 'YYYY年MM月DD日')))
 ```
 
-## 17.优秀的日期处理库 Moment.JS {#17优秀的日期处理库-momentjs}
+## 17.优秀的日期处理库 Moment.JS
 
 ```js
 npm i moment -g

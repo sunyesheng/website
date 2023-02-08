@@ -5,17 +5,17 @@ title: 从Redux源码中的HOC模式探索
 
 本篇博客记录`Redux`源码的学习过程, 探索`逻辑复用`的一种处理方案`HOC`在`Redux`中的体现
 
-## 1.React-Redux 中 HOC 模式的探索 {#1react-redux-中-hoc-模式的探索}
+## 1.React-Redux 中 HOC 模式的探索
 
-### 1.1 Redux 工作流 {#11-redux-工作流}
+### 1.1 Redux 工作流
 
 View binding library --> React Redux
 
 从 React-Redux 解析 HOC 模式, 对比 Custom Hooks 的逻辑复用思路
 
-## 2. Redux 工作思路 {#2-redux-工作思路}
+## 2. Redux 工作思路
 
-### 2.1 三大理念 {#21-三大理念}
+### 2.1 三大理念
 
 - State 只读: `Immutable state`
 
@@ -50,7 +50,7 @@ store.subscribe(() => {
 
 源码也很简单.
 
-### 2.2 容器组件和展示组件分离 {#22-容器组件和展示组件分离}
+### 2.2 容器组件和展示组件分离
 
 `容器组件`和`展示组件`分离是从 HOC 模式开始的
 
@@ -62,11 +62,11 @@ React 实现的展示组件和 Redux 实现的容器组件不产生依赖, `低�
 
 在`Redux-toolkit`帮助我们处理的这些事情，不需要进行`connect()`进行绑定
 
-## 3. Redux-thunk {#3-redux-thunk}
+## 3. Redux-thunk
 
 in order to handle async request
 
-### 3.1 Redux-thunks 工作原理 {#31-redux-thunks-工作原理}
+### 3.1 Redux-thunks 工作原理
 
 在`Redux-thunks`源码的`index.js`文件中做了个简单的判断:
 
@@ -92,7 +92,7 @@ export const login = (form: AuthForm) => (dispatch: AppDispatch) =>
   auth.login(form).then((user) => dispatch(setUser(user)))
 ```
 
-### 3.2 Redux 如何引入 Redux-thunk 的中间件 {#32-redux-如何引入-redux-thunk-的中间件}
+### 3.2 Redux 如何引入 Redux-thunk 的中间件
 
 使用`applyMiddleware()`
 
@@ -114,9 +114,9 @@ thunk 的优点是可以再次被 dispatch, 这样我们可以很方便的处理
 
 当然你也可以使用 react-query 等`data-fetching`之类的库去进行处理
 
-## 4. 理解 middleware 中间件 {#4-理解-middleware-中间件}
+## 4. 理解 middleware 中间件
 
-### 4.1 特性 {#41-特性}
+### 4.1 特性
 
 最优秀的特征: `链式引用`， 多个中间件组合
 
@@ -141,7 +141,7 @@ let store = createStore(todos, ['Use Redux'], applyMiddleware(logger))
 
 applyMiddleware 接受一个 middleware 的数组
 
-### 4.2 源码部分: {#42-源码部分}
+### 4.2 源码部分:
 
 ```typescript
 export default function applyMiddleware(

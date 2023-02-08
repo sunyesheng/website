@@ -13,7 +13,7 @@ Javascript 教程第六章：Set 和 WeakSet 类型
 
 # 一.Set 和 WeakSet 类型
 
-## 1.Set 类型 {#1set-类型}
+## 1.Set 类型
 
 1.增加:
 
@@ -45,7 +45,7 @@ set.keys()
 for of 和 forEach(value,key,set)
 ```
 
-### 1.Set:集合不能放重复元素 {#1set集合不能放重复元素}
+### 1.Set:集合不能放重复元素
 
 在 Object 类型中，属性名都会转换成字符串类型，而 Set 是严格类型约束，1 是 1 ,"1"是"1"
 
@@ -63,7 +63,7 @@ console.log(set1.size);
 
 ```
 
-## 2.遍历 Set 类型的方式 {#2遍历-set-类型的方式}
+## 2.遍历 Set 类型的方式
 
 ```
 let myset = new Set(["hdms","houdunren.com"])
@@ -77,7 +77,7 @@ set.forEach(function(value,key,set))
 for(const iterator of set)
 ```
 
-## 3.使用 Set 处理网站关键词 {#3使用-set-处理网站关键词}
+## 3.使用 Set 处理网站关键词
 
 ```js
 let input = document.getElementsByTagName('input')[0]
@@ -100,7 +100,7 @@ input.addEventListener('blur', function () {
 })
 ```
 
-## 4.Set 实现并集交集差集的算法 {#4set-实现并集交集差集的算法}
+## 4.Set 实现并集交集差集的算法
 
 ```
 let a = new Set([1,2,3,4])
@@ -116,7 +116,7 @@ console.log(
 );
 ```
 
-## 5.WeakSet 语法介绍 {#5weakset-语法介绍}
+## 5.WeakSet 语法介绍
 
 WeakSet(Object)必须为引用类型
 
@@ -130,11 +130,11 @@ document.querySelectorAll("div").forEach(functiom(item){
 
 ```
 
-## 6.引用类型的垃圾回收机制 {#6引用类型的垃圾回收机制}
+## 6.引用类型的垃圾回收机制
 
 同一个对象引用一次，内存中该对象的引用次数加一，当引用次数为零时，则变为垃圾
 
-## 7.WeakSet 弱引用类型 {#7weakset-弱引用类型}
+## 7.WeakSet 弱引用类型
 
 ```
 let hd = {name:"houdunren"}
@@ -156,7 +156,7 @@ edu = null;
 而此时WeakSet中还是会认为有数据
 ```
 
-## 8.todo 列表中使用 WeakSet {#8todo-列表中使用-weakset}
+## 8.todo 列表中使用 WeakSet
 
 使用 WeakSet 保存 DOM 中的 NodeList
 
