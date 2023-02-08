@@ -11,6 +11,14 @@
     "message": "算法",
     "description": "Navbar item with label 算法"
   },
+  "item.label.技术设计": {
+    "message": "技术设计",
+    "description": "Navbar item with label 技术设计"
+  },
+  "item.label.工程化": {
+    "message": "工程化",
+    "description": "Navbar item with label 工程化"
+  },
   "item.label.React源码": {
     "message": "React源码",
     "description": "Navbar item with label React源码"
@@ -19,10 +27,6 @@
     "message": "资源整理",
     "description": "Navbar item with label 资源整理"
   },
-  "item.label.B站": {
-    "message": "B站",
-    "description": "Navbar item with label B站"
-  },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
@@ -30,13 +34,5 @@
   "item.label.Javascript": {
     "message": "Javascript",
     "description": "Navbar item with label Javascript"
-  },
-  "item.label.技术设计": {
-    "message": "技术设计",
-    "description": "Navbar item with label 技术设计"
-  },
-  "item.label.工程化": {
-    "message": "工程化",
-    "description": "Navbar item with label 工程化"
   }
 }

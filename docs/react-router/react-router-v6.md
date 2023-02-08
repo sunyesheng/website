@@ -5,27 +5,27 @@ title: React-routerV6版本初体验
 
 本篇博客对 React17 的 Hooks 源码进行了剖析, 目的是理解 React 的 Hooks 设计
 
-## 1. BrowserRouter vs HashRouter
+## 1. BrowserRouter vs HashRouter {#1-browserrouter-vs-hashrouter}
 
-### 1.1 是什么
+### 1.1 是什么 {#11-是什么}
 
 BrowserRouter: `window.history`
 
 HashRouter: `window.hash`
 
-### 2.2 区别:
+### 2.2 区别: {#22-区别}
 
 history 调用栈可以保存 state, hash 不可以
 
-## 2. React-router@6.0.0-beta.0 new Feature
+## 2. React-router@6.0.0-beta.0 new Feature {#2-react-router600-beta0-new-feature}
 
-### 2.1 路由嵌套：
+### 2.1 路由嵌套： {#21-路由嵌套}
 
 如果在 Routes 中还有需要嵌套的路由，只需要在父路由加入`.*`的匹配条件
 
 You'll only need the trailing \* when there is another `<Routes>` somewhere in that route's descendant tree
 
-### 2.2 动态参数
+### 2.2 动态参数 {#22-动态参数}
 
 - .\*
 - :id
@@ -34,7 +34,7 @@ You'll only need the trailing \* when there is another `<Routes>` somewhere in t
 
 > A \* wildcard may be used only at the end of a path, not in the middle.
 
-### 2.3 配置规则
+### 2.3 配置规则 {#23-配置规则}
 
 配置规则:
 
@@ -73,7 +73,7 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
 
 在代码中的 context 中加入 Router，也就是 BrowserRouter 下增加 App 容器，在 App 中返回 useRoutes()的返回值
 
-### 2.4 使用 navigate 替换 history
+### 2.4 使用 navigate 替换 history {#24-使用-navigate-替换-history}
 
 V5
 
@@ -113,7 +113,7 @@ function App() {
 }
 ```
 
-### 2.5 重定向
+### 2.5 重定向 {#25-重定向}
 
 V5 版本重定向
 
@@ -139,7 +139,7 @@ V6, to 和 state 属性分开，可读性好，
 如果你对`BrowserRouter`的`history`对象不了解的话
 请移步这里[MDN history 对象](https://developer.mozilla.org/zh-CN/docs/Web/API/History)
 
-## 3. react-router v5 vs v6
+## 3. react-router v5 vs v6 {#3-react-router-v5-vs-v6}
 
 ```typescript jsx
 // TODO: 在V6中使用element替换component属性的原因
@@ -173,7 +173,7 @@ declare global {
 }
 ```
 
-### 3.1 props 透传问题
+### 3.1 props 透传问题 {#31-props-透传问题}
 
 由于我们引入组件的时候是这样的类型`() => JSX.Element` 而不是一个组件
 
@@ -203,7 +203,7 @@ React-router 的 V6 官方文档中有这样一段描述:
 
 相较于 V5 版本，非常简便而且易懂
 
-### 3.2 子路由匹配问题
+### 3.2 子路由匹配问题 {#32-子路由匹配问题}
 
 如果在父路由下还有子路由，需要在顶层路由，只需要添加`.*`通配符
 
@@ -225,13 +225,13 @@ export const Home = () => {
 }
 ```
 
-### 3.3 支持的通配符
+### 3.3 支持的通配符 {#33-支持的通配符}
 
 react-router 的 V6 版本只支持以下俩种通配符
 
 - `.*`
 - `:id`
 
-## 参考文献:
+## 参考文献: {#参考文献}
 
 - [Github React-router version-7 advanced-guide](https://github.com/ReactTraining/react-router/blob/v6.0.0-beta.0/docs/advanced-guides/migrating-5-to-6.md)

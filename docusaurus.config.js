@@ -35,7 +35,7 @@ module.exports = {
         {
           to: '/',
           activeBasePath: 'blog',
-          label: '博客',
+          label: '前端',
           position: 'right',
           items: [
             {
@@ -67,11 +67,6 @@ module.exports = {
         {
           to: 'docs/resources/resources-intro',
           label: '资源整理',
-          position: 'right',
-        },
-        {
-          href: 'https://space.bilibili.com/345132581',
-          label: 'B站',
           position: 'right',
         },
         {

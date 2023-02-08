@@ -3,16 +3,14 @@ id: react-hooks
 title: React hooks 源码全方位解析
 ---
 
-本篇博客对React17的Hooks源码进行了剖析, 目的是理解React的Hooks设计
+本篇博客对 React17 的 Hooks 源码进行了剖析, 目的是理解 React 的 Hooks 设计
 
+## 1. useEffect {#1-useeffect}
 
-## 1. useEffect
+### 用法 {#用法}
 
-### 用法
 ```typescript
-
-function useEffect(effect: EffectCallback, deps?: DependencyList): void;
-
+function useEffect(effect: EffectCallback, deps?: DependencyList): void
 ```
 
 对应的生命周期: `Mount`, `Update`, `WillUnmount`
@@ -24,49 +22,46 @@ function useEffect(effect: EffectCallback, deps?: DependencyList): void;
 Warning: 如果没有在`WillUnmount`阶段对监听和订阅进行卸载, 一直存在可能会造成内存泄露
 
 ```typescript
-
-import {useEffect} from "react";
+import { useEffect } from 'react'
 
 useEffect(() => {
-  document.addEventListener("mousemove", handleMouseMove)
-  
+  document.addEventListener('mousemove', handleMouseMove)
+
   return () => {
-    document.removeEventListener("mousemove", handleMouseMove)
+    document.removeEventListener('mousemove', handleMouseMove)
   }
 }, [])
-
 ```
 
-### 源码实现:
+### 源码实现: {#源码实现}
 
-### 1.1 入口定义
+### 1.1 入口定义 {#11-入口定义}
+
 ```typescript
-
 export function useEffect(
   create: () => (() => void) | void,
-  deps: Array<mixed> | void | null,
+  deps: Array<mixed> | void | null
 ): void {
-  const dispatcher = resolveDispatcher();
-  return dispatcher.useEffect(create, deps);
+  const dispatcher = resolveDispatcher()
+  return dispatcher.useEffect(create, deps)
 }
-
 ```
 
-### 1.2 resolveDispatch()
+### 1.2 resolveDispatch() {#12-resolvedispatch}
 
 ```typescript
 
 function resolveDispatcher() {
   const dispatcher = ReactCurrentDispatcher.current;
- 
+
   // ...
-  
+
   return ((dispatcher: any): Dispatcher);
 }
 
 ```
 
-### 1.3 ReactCurrentDispatcher.current
+### 1.3 ReactCurrentDispatcher.current {#13-reactcurrentdispatchercurrent}
 
 ```typescript
 
@@ -76,13 +71,11 @@ const ReactCurrentDispatcher = {
 
 ```
 
+### 1.4 源码在 react-reconciler 中的 ReactFiberHooks {#14-源码在-react-reconciler-中的-reactfiberhooks}
 
-### 1.4 源码在react-reconciler中的ReactFiberHooks
+## 2. useState {#2-usestate}
 
-
-## 2. useState
-
-### 2.1 fiber设计
+### 2.1 fiber 设计 {#21-fiber-设计}
 
 在`function component`中利用`fiber`保存了`hooks`列表
 
@@ -93,21 +86,20 @@ const ReactCurrentDispatcher = {
 type Fiber = {|
   // 记录function component的hooks列表, 单链表结构
   memoizedState: any
-  
+
   |}
 
 ```
 
-### 2.2 dispatchAction执行update
+### 2.2 dispatchAction 执行 update {#22-dispatchaction-执行-update}
 
 ```typescript jsx
-import {useState} from "react";
+import { useState } from 'react'
 
 const [num, setNum] = useState(0)
-
 ```
 
-调用setNum时, 实际上是调用了`dispatchAction.bind()`
+调用 setNum 时, 实际上是调用了`dispatchAction.bind()`
 
 在`dispatchAction`创建了`update`的环状单链表`updateQueue`
 
@@ -124,26 +116,24 @@ const update: Update<S, A> = {
 
 ```
 
-## 3 useState and useReducer
+## 3 useState and useReducer {#3-usestate-and-usereducer}
 
-### 3.1 理解
+### 3.1 理解 {#31-理解}
 
-首先需要明白的是, `useState`和`useReducer`这俩个`hooks`是`Redux`的创始人`Dan`加入React核心团队后带来的变化
+首先需要明白的是, `useState`和`useReducer`这俩个`hooks`是`Redux`的创始人`Dan`加入 React 核心团队后带来的变化
 
-所以在理解这俩个hooks的设计理念的时候, 可以多想想Redux中`dispatch`和`action`的概念, 方便理解这俩个`Hooks`
+所以在理解这俩个 hooks 的设计理念的时候, 可以多想想 Redux 中`dispatch`和`action`的概念, 方便理解这俩个`Hooks`
 
 ```typescript
-
 function useState(initialState) {
   // resolveDispatcher读取ReactCurrentDispatcher.current获取当前的dispatcher
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useState(initialState);
+  var dispatcher = resolveDispatcher()
+  return dispatcher.useState(initialState)
 }
 function useReducer(reducer, initialArg, init) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useReducer(reducer, initialArg, init);
+  var dispatcher = resolveDispatcher()
+  return dispatcher.useReducer(reducer, initialArg, init)
 }
-
 ```
 
 在`mounted`的时候俩者中的`lastRenderedReducer`不同
@@ -152,9 +142,9 @@ function useReducer(reducer, initialArg, init) {
 
 - `useReducer`是我们自己传入的`Reducer`
 
-> 俩个Hook在更新state的时候逻辑和updateQueue的更新逻辑是差不多的，循环更新函数，计算出新的state
+> 俩个 Hook 在更新 state 的时候逻辑和 updateQueue 的更新逻辑是差不多的，循环更新函数，计算出新的 state
 
-### Q1: 为什么采用了环状单链表的结构?
+### Q1: 为什么采用了环状单链表的结构? {#q1-为什么采用了环状单链表的结构}
 
 在调度阶段取得第一个`initialState`, 然后循环调用`updateQueue`,
 
@@ -162,70 +152,65 @@ function useReducer(reducer, initialArg, init) {
 
 这时候需要和第一个`update`比较判断来确保所有的`update`都执行结束
 
+## 4. useEffect and useLayoutEffect {#4-useeffect-and-uselayouteffect}
 
-## 4. useEffect and useLayoutEffect
-
-### 4.1 useEffect
+### 4.1 useEffect {#41-useeffect}
 
 当我们修改了数据需要`update`, `React` 调用`mutation`之前会对副作用函数进行`flush`
 
 执行`flushPassiveEffects` --> 然后执行`flushPassiveEffectsImp`
 
-在`flushPassiveEffectsImp`中会清除所有useEffect的销毁函数
+在`flushPassiveEffectsImp`中会清除所有 useEffect 的销毁函数
 
 ```typescript
-
-var unmountEffects = pendingPassiveHookEffectsUnmount;
-pendingPassiveHookEffectsUnmount = [];
+var unmountEffects = pendingPassiveHookEffectsUnmount
+pendingPassiveHookEffectsUnmount = []
 // 清楚所有useEffect的销毁函数
 for (var i = 0; i < unmountEffects.length; i += 2) {
-  var _effect = unmountEffects[i];
-  var fiber = unmountEffects[i + 1];
-  var destroy = _effect.destroy;
-  _effect.destroy = undefined;
+  var _effect = unmountEffects[i]
+  var fiber = unmountEffects[i + 1]
+  var destroy = _effect.destroy
+  _effect.destroy = undefined
 
   {
-    fiber.effectTag &= ~PassiveUnmountPendingDev;
-    var alternate = fiber.alternate;
+    fiber.effectTag &= ~PassiveUnmountPendingDev
+    var alternate = fiber.alternate
 
     if (alternate !== null) {
-      alternate.effectTag &= ~PassiveUnmountPendingDev;
+      alternate.effectTag &= ~PassiveUnmountPendingDev
     }
   }
 
   if (typeof destroy === 'function') {
     {
-      setCurrentFiber(fiber);
+      setCurrentFiber(fiber)
 
       {
-        invokeGuardedCallback(null, destroy, null);
+        invokeGuardedCallback(null, destroy, null)
       }
 
       if (hasCaughtError()) {
         if (!(fiber !== null)) {
           {
-            throw Error( "Should be working on an effect." );
+            throw Error('Should be working on an effect.')
           }
         }
 
-        var error = clearCaughtError();
-        captureCommitPhaseError(fiber, error);
+        var error = clearCaughtError()
+        captureCommitPhaseError(fiber, error)
       }
 
-      resetCurrentFiber();
+      resetCurrentFiber()
     }
   }
 } // Second pass: Create new passive effects.
-
 ```
 
-按照`全部销毁` --> `全部执行` 的顺序，确保ref的引用正确
+按照`全部销毁` --> `全部执行` 的顺序，确保 ref 的引用正确
 
-> 注意: useEffect的更新是在layout阶段之后异步执行, 源码体现在这里
+> 注意: useEffect 的更新是在 layout 阶段之后异步执行, 源码体现在这里
 
 ```typescript
-
-
 // 根据不同的fiber类型进行处理 --> commitFiberToLayout
 function commitLifeCycles(finishedRoot, current, finishedWork, committedLanes) {
   switch (finishedWork.tag) {
@@ -239,40 +224,36 @@ function commitLifeCycles(finishedRoot, current, finishedWork, committedLanes) {
       // by a create function in another component during the same commit.
       {
         // useLayoutEffect --> 这里直接commit了，执行useLayout
-        commitHookEffectListMount(Layout | HasEffect, finishedWork);
+        commitHookEffectListMount(Layout | HasEffect, finishedWork)
       }
 
       // effect function --> 销毁和回调  --> 先进行了调度, 存在了俩个数组中, 并没有执行 --> 在结束后统一异步执行
-      schedulePassiveEffects(finishedWork);
-      return;
+      schedulePassiveEffects(finishedWork)
+      return
     }
   }
 }
 ```
 
-### 4.2 useEffect和useLayout的区别:
+### 4.2 useEffect 和 useLayout 的区别: {#42-useeffect-和-uselayout-的区别}
 
-- `useEffect`在`commitFiberToLayout`阶段(Layout阶段)开启调度, 把回调函数和销毁函数保存, 在Layout阶段结束后统一`异步`调用
+- `useEffect`在`commitFiberToLayout`阶段(Layout 阶段)开启调度, 把回调函数和销毁函数保存, 在 Layout 阶段结束后统一`异步`调用
 
 - `useLayoutEffect`在`Layout`阶段`同步`执行, 直接`commit` --> `commitHookEffectListMount`
-  
 
-React在执行
+React 在执行
 
 ```typescript
 
-
-
-
 ```
 
-## 5. useRef   
+## 5. useRef {#5-useref}
 
-总述: useRef -->  通往 mutable 的通道
+总述: useRef --> 通往 mutable 的通道
 
-### 5.1 是什么
+### 5.1 是什么 {#51-是什么}
 
-从`6.不同Hook的dispatcher`可以看到useRef同样分为俩个函数`mountRef`和`updateRef`
+从`6.不同Hook的dispatcher`可以看到 useRef 同样分为俩个函数`mountRef`和`updateRef`
 
 ```typescript
 
@@ -280,7 +261,7 @@ function mountRef<T>(initialValue: T): {|current: T|} {
   // 获取当前hook
   const hook = mountWorkInProgressHook();
   if (enableUseRefAccessWarning) {
-    // do something 
+    // do something
   } else {
     const ref = {current: initialValue};
     hook.memoizedState = ref;
@@ -289,7 +270,6 @@ function mountRef<T>(initialValue: T): {|current: T|} {
 }
 
 ```
-
 
 ```typescript
 
@@ -300,297 +280,269 @@ function updateRef<T>(initialValue: T): {|current: T|} {
 
 ```
 
-
 ```typescript
-
 export function createRef(): RefObject {
   const refObject = {
     current: null,
-  };
-  return refObject;
+  }
+  return refObject
 }
-
 ```
 
 可以看到`useRef`本质上就是一个包含`current`的对象
 
-### 5.2 如何工作
+### 5.2 如何工作 {#52-如何工作}
 
 机制描述 --> 通过`topic`来确定`mutation`操作
 
-`React`在`commit`的阶段时进行`mutation`操作, 根据不同的`effectTag`来对DOM进行操作
+`React`在`commit`的阶段时进行`mutation`操作, 根据不同的`effectTag`来对 DOM 进行操作
 
 `effectTag`是一个单纯的二进制, 通过位操作符的原理来进行比对时的优化, 不同的操作类型是这样的
 
-本质上是一种 `topic and mutation` 
+本质上是一种 `topic and mutation`
 
 ```typescript
-
-export type Flags = number;
+export type Flags = number
 
 // Don't change these two values. They're used by React Dev Tools.
-export const NoFlags = /*                      */ 0b00000000000000000000000;
-export const PerformedWork = /*                */ 0b00000000000000000000001;
+export const NoFlags = /*                      */ 0b00000000000000000000000
+export const PerformedWork = /*                */ 0b00000000000000000000001
 
 // 这里的Tag标识了要对DOM进行何种mutation操作
 // You can change the rest (and add more).
-export const Placement = /*                    */ 0b00000000000000000000010;
-export const Update = /*                       */ 0b00000000000000000000100;
-export const PlacementAndUpdate = /*           */ Placement | Update;
-export const Deletion = /*                     */ 0b00000000000000000001000;
-export const ChildDeletion = /*                */ 0b00000000000000000010000;
-
+export const Placement = /*                    */ 0b00000000000000000000010
+export const Update = /*                       */ 0b00000000000000000000100
+export const PlacementAndUpdate = /*           */ Placement | Update
+export const Deletion = /*                     */ 0b00000000000000000001000
+export const ChildDeletion = /*                */ 0b00000000000000000010000
 ```
 
 所以，对于`HostComponent`、`ClassComponent`如果包含`ref`操作，那么也会赋值相应的`effectTag`
 
-#### 1. render阶段
+#### 1. render 阶段 {#1-render-阶段}
 
-##### 1.1 标记`topic`
-在render阶段通过markRef来对含有`ref`的`fiber`标记effectTag
+##### 1.1 标记`topic` {#11-标记topic}
+
+在 render 阶段通过 markRef 来对含有`ref`的`fiber`标记 effectTag
 
 ```typescript
-
 function markRef(current: Fiber | null, workInProgress: Fiber) {
-  const ref = workInProgress.ref;
+  const ref = workInProgress.ref
   if (
     (current === null && ref !== null) ||
     (current !== null && current.ref !== ref)
   ) {
     // Schedule a Ref effect
-    workInProgress.flags |= Ref;
+    workInProgress.flags |= Ref
     if (enableSuspenseLayoutEffectSemantics) {
-      workInProgress.flags |= RefStatic;
+      workInProgress.flags |= RefStatic
     }
   }
 }
-
 ```
 
-##### 1.2 何时赋值?
+##### 1.2 何时赋值? {#12-何时赋值}
 
-在commitLayout阶段对ref进行赋值`commitAttachRef`
+在 commitLayout 阶段对 ref 进行赋值`commitAttachRef`
 
 ```typescript
-
 function commitAttachRef(finishedWork: Fiber) {
-  const ref = finishedWork.ref;
+  const ref = finishedWork.ref
   if (ref !== null) {
     // 获取ref属性对应的Component实例
-    const instance = finishedWork.stateNode;
-    let instanceToUse;
+    const instance = finishedWork.stateNode
+    let instanceToUse
     switch (finishedWork.tag) {
       case HostComponent:
-        instanceToUse = getPublicInstance(instance);
-        break;
+        instanceToUse = getPublicInstance(instance)
+        break
       default:
-        instanceToUse = instance;
+        instanceToUse = instance
     }
 
     // 赋值ref
     if (typeof ref === 'function') {
-      ref(instanceToUse);
+      ref(instanceToUse)
     } else {
-      ref.current = instanceToUse;
+      ref.current = instanceToUse
     }
   }
 }
 ```
 
-总结下组件对应fiber被赋值Ref effectTag需要满足的条件：
+总结下组件对应 fiber 被赋值 Ref effectTag 需要满足的条件：
 
 - `fiber`类型为`HostComponent`、`ClassComponent`、`ScopeComponent`（这种情况我们不讨论）
 
-- mount阶段存在ref属性
+- mount 阶段存在 ref 属性
 
-- update阶段ref属性改变
+- update 阶段 ref 属性改变
 
+#### 2. commit 阶段 {#2-commit-阶段}
 
-#### 2. commit阶段
-
-##### 2.1 移除之前的ref指向
+##### 2.1 移除之前的 ref 指向 {#21-移除之前的-ref-指向}
 
 ```typescript
-
-
 function commitMutationEffects(root, renderPriorityLevel) {
   // TODO: Should probably move the bulk of this function to commitWork.
   while (nextEffect !== null) {
-    setCurrentFiber(nextEffect);
-    var effectTag = nextEffect.effectTag;
+    setCurrentFiber(nextEffect)
+    var effectTag = nextEffect.effectTag
 
     if (effectTag & ContentReset) {
-      commitResetTextContent(nextEffect);
+      commitResetTextContent(nextEffect)
     }
 
     // 如果是Ref
     if (effectTag & Ref) {
-      var current = nextEffect.alternate;
+      var current = nextEffect.alternate
 
       if (current !== null) {
-        commitDetachRef(current);
+        commitDetachRef(current)
       }
     } // The following switch statement is only concerned about placement,
     // updates, and deletions. To avoid needing to add a case for every possible
     // bitmap value, we remove the secondary effects from the effect tag and
     // switch on that value.
 
-    resetCurrentFiber();
-    nextEffect = nextEffect.nextEffect;
+    resetCurrentFiber()
+    nextEffect = nextEffect.nextEffect
   }
 }
-
 ```
 
-上面可以看到, 如果是Ref, 执行了`commitDetachRef`方法, 这个方法清除了`ref`的`current`指向
+上面可以看到, 如果是 Ref, 执行了`commitDetachRef`方法, 这个方法清除了`ref`的`current`指向
 
 ```typescript
-
 function commitDetachRef(current) {
-  var currentRef = current.ref;
+  var currentRef = current.ref
 
   if (currentRef !== null) {
     if (typeof currentRef === 'function') {
-      currentRef(null);
+      currentRef(null)
     } else {
       // 移除之前的ref
-      currentRef.current = null;
+      currentRef.current = null
     }
   }
 }
-
 ```
 
-
-##### 2.2 根据`topic`确定`mutation`类型
+##### 2.2 根据`topic`确定`mutation`类型 {#22-根据topic确定mutation类型}
 
 ```typescript
-
 function commitMutationEffects(root, renderPriorityLevel) {
   // TODO: Should probably move the bulk of this function to commitWork.
   while (nextEffect !== null) {
-    setCurrentFiber(nextEffect);
-    var effectTag = nextEffect.effectTag;
+    setCurrentFiber(nextEffect)
+    var effectTag = nextEffect.effectTag
 
     if (effectTag & ContentReset) {
-      commitResetTextContent(nextEffect);
+      commitResetTextContent(nextEffect)
     }
 
     // 如果是Ref
     if (effectTag & Ref) {
-      var current = nextEffect.alternate;
+      var current = nextEffect.alternate
 
       if (current !== null) {
-        commitDetachRef(current);
+        commitDetachRef(current)
       }
     } // The following switch statement is only concerned about placement,
     // updates, and deletions. To avoid needing to add a case for every possible
     // bitmap value, we remove the secondary effects from the effect tag and
     // switch on that value.
-    
 
     // 在确定了effectTag进行的mutation操作之后, 需要进行处理, 处理逻辑在下面的switch中
-    resetCurrentFiber();
-    nextEffect = nextEffect.nextEffect;
+    resetCurrentFiber()
+    nextEffect = nextEffect.nextEffect
   }
 }
 ```
 
-在确定了effectTag进行的mutation操作之后, 需要进行处理, 处理逻辑在下面的switch中
+在确定了 effectTag 进行的 mutation 操作之后, 需要进行处理, 处理逻辑在下面的 switch 中
 
 ```typescript
-
 // 这里是位操作符, React中的mutation对应的topic都是二进制(都是2的倍数), 如果你不太理解你可以把它当成 逻辑运算符 与
-var primaryEffectTag = effectTag & (Placement | Update | Deletion | Hydrating);
+var primaryEffectTag = effectTag & (Placement | Update | Deletion | Hydrating)
 
 switch (primaryEffectTag) {
-  case Placement:
-    {
-      commitPlacement(nextEffect); // Clear the "placement" from effect tag so that we know that this is
-      // inserted, before any life-cycles like componentDidMount gets called.
-      // TODO: findDOMNode doesn't rely on this any more but isMounted does
-      // and isMounted is deprecated anyway so we should be able to kill this.
+  case Placement: {
+    commitPlacement(nextEffect) // Clear the "placement" from effect tag so that we know that this is
+    // inserted, before any life-cycles like componentDidMount gets called.
+    // TODO: findDOMNode doesn't rely on this any more but isMounted does
+    // and isMounted is deprecated anyway so we should be able to kill this.
 
-      nextEffect.effectTag &= ~Placement;
-      break;
-    }
+    nextEffect.effectTag &= ~Placement
+    break
+  }
 
-  case PlacementAndUpdate:
-    {
-      // Placement
-      commitPlacement(nextEffect); // Clear the "placement" from effect tag so that we know that this is
-      // inserted, before any life-cycles like componentDidMount gets called.
+  case PlacementAndUpdate: {
+    // Placement
+    commitPlacement(nextEffect) // Clear the "placement" from effect tag so that we know that this is
+    // inserted, before any life-cycles like componentDidMount gets called.
 
-      nextEffect.effectTag &= ~Placement; // Update
+    nextEffect.effectTag &= ~Placement // Update
 
-      var _current = nextEffect.alternate;
-      commitWork(_current, nextEffect);
-      break;
-    }
+    var _current = nextEffect.alternate
+    commitWork(_current, nextEffect)
+    break
+  }
 
-  case Hydrating:
-    {
-      nextEffect.effectTag &= ~Hydrating;
-      break;
-    }
+  case Hydrating: {
+    nextEffect.effectTag &= ~Hydrating
+    break
+  }
 
-  case HydratingAndUpdate:
-    {
-      nextEffect.effectTag &= ~Hydrating; // Update
+  case HydratingAndUpdate: {
+    nextEffect.effectTag &= ~Hydrating // Update
 
-      var _current2 = nextEffect.alternate;
-      commitWork(_current2, nextEffect);
-      break;
-    }
+    var _current2 = nextEffect.alternate
+    commitWork(_current2, nextEffect)
+    break
+  }
 
-  case Update:
-    {
-      var _current3 = nextEffect.alternate;
-      commitWork(_current3, nextEffect);
-      break;
-    }
+  case Update: {
+    var _current3 = nextEffect.alternate
+    commitWork(_current3, nextEffect)
+    break
+  }
 
-  case Deletion:
-    {
-      commitDeletion(root, nextEffect);
-      break;
-    }
+  case Deletion: {
+    commitDeletion(root, nextEffect)
+    break
+  }
 }
 ```
 
-
-##### 2.3执行`mutation`操作
+##### 2.3 执行`mutation`操作 {#23-执行mutation操作}
 
 在上文的`switch`结构中确定了`mutation`类型, 如果是`Deletion`会执行`commitDeletion`操作
 
-在`commitDeletion`——`unmountHostComponents`——`commitUnmount`——`ClassComponent | HostComponent`类型case中调用的`safelyDetachRef`方法负责执行类似`commitDetachRef`的操作。
+在`commitDeletion`——`unmountHostComponents`——`commitUnmount`——`ClassComponent | HostComponent`类型 case 中调用的`safelyDetachRef`方法负责执行类似`commitDetachRef`的操作。
 
 ```typescript
-
 function safelyDetachRef(current: Fiber) {
-  const ref = current.ref;
+  const ref = current.ref
   if (ref !== null) {
     if (typeof ref === 'function') {
       try {
-        ref(null);
+        ref(null)
       } catch (refError) {
-        captureCommitPhaseError(current, refError);
+        captureCommitPhaseError(current, refError)
       }
     } else {
-      ref.current = null;
+      ref.current = null
     }
   }
 }
-
 ```
 
-## 6. 不同 Hook的 dispatcher
+## 6. 不同 Hook 的 dispatcher {#6-不同-hook-的-dispatcher}
 
-有这么三个不同的dispatcher来判断是什么时候执行的更新
+有这么三个不同的 dispatcher 来判断是什么时候执行的更新
 
 ```typescript
-
-
 // 已经在Hook中，如果有嵌套的Hook throw 一个 Error
 export const ContextOnlyDispatcher: Dispatcher = {
   readContext,
@@ -611,7 +563,7 @@ export const ContextOnlyDispatcher: Dispatcher = {
   useOpaqueIdentifier: throwInvalidHookError,
 
   unstable_isNewReconciler: enableNewReconciler,
-};
+}
 
 // 挂载时的dispatcher
 const HooksDispatcherOnMount: Dispatcher = {
@@ -633,7 +585,7 @@ const HooksDispatcherOnMount: Dispatcher = {
   useOpaqueIdentifier: mountOpaqueIdentifier,
 
   unstable_isNewReconciler: enableNewReconciler,
-};
+}
 
 // 更新时的dispatcher
 const HooksDispatcherOnUpdate: Dispatcher = {
@@ -655,8 +607,7 @@ const HooksDispatcherOnUpdate: Dispatcher = {
   useOpaqueIdentifier: updateOpaqueIdentifier,
 
   unstable_isNewReconciler: enableNewReconciler,
-};
+}
 ```
 
 在执行的时候通过给`ReactCurrentDispatcher`的`current`属性赋值来确定处于什么状态
-

@@ -17,7 +17,7 @@ Javascript教程第一章：走进Javascript
 
 一.第一章：走进JavaScript
 
-## 1.变量提升
+## 1.变量提升 {#1变量提升}
 定义："函数"及"变量的声明"都将被提升到函数的最顶部（函数，变量，上升到函数的顶部）。
 ```
 console.log(web)
@@ -44,11 +44,11 @@ function func(){
 
 以上代码也会保存，以为在func函数区域里出现了TDZ
 
-## 2.var-let-const 共同点
+## 2.var-let-const 共同点 {#2var-let-const-共同点}
 const不能够修改，但是是在同一个作用域下不能修改，  
 关注点：内存地址
 
-## 3.标量与引用类型的传值与传址特征
+## 3.标量与引用类型的传值与传址特征 {#3标量与引用类型的传值与传址特征}
 ```
 传值
 let a = 1;
@@ -60,9 +60,9 @@ let f = e;
 ```
 牵扯到深拷贝和浅拷贝
 
-## 4.null与undefined
+## 4.null与undefined {#4null与undefined}
 
-## 5.use strict 严格模式高质量代码守卫
+## 5.use strict 严格模式高质量代码守卫 {#5use-strict-严格模式高质量代码守卫}
 ```
 'use strict'
 web = "houdunren.com"
