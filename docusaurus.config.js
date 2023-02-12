@@ -28,43 +28,43 @@ module.exports = {
         src: 'img/home/logo.ico',
       },
       items: [
-        {
-          to: '/',
-          activeBasePath: 'blog',
-          label: '前端',
-          position: 'right',
-          items: [
-            {
-              label: 'Javascript',
-              to: '/blog/tags/Javascript',
-            },
-          ],
-        },
-        {
-          to: 'docs/algorithm/二叉树/preorder',
-          label: '算法',
-          position: 'right',
-        },
-        {
-          to: 'docs/design/table',
-          label: '技术设计',
-          position: 'right',
-        },
-        {
-          to: 'docs/project/auth',
-          label: '工程化',
-          position: 'right',
-        },
-        {
-          to: 'docs/react/react-hooks',
-          label: 'React源码',
-          position: 'right',
-        },
-        {
-          to: 'docs/resources/resources-intro',
-          label: '资源整理',
-          position: 'right',
-        },
+        // {
+        //   to: '/',
+        //   activeBasePath: 'blog',
+        //   label: '前端',
+        //   position: 'right',
+        //   items: [
+        //     {
+        //       label: 'Javascript',
+        //       to: '/blog/tags/Javascript',
+        //     },
+        //   ],
+        // },
+        // {
+        //   to: 'docs/algorithm/二叉树/preorder',
+        //   label: '算法',
+        //   position: 'right',
+        // },
+        // {
+        //   to: 'docs/design/table',
+        //   label: '技术设计',
+        //   position: 'right',
+        // },
+        // {
+        //   to: 'docs/project/auth',
+        //   label: '工程化',
+        //   position: 'right',
+        // },
+        // {
+        //   to: 'docs/react/react-hooks',
+        //   label: 'React源码',
+        //   position: 'right',
+        // },
+        // {
+        //   to: 'docs/resources/resources-intro',
+        //   label: '资源整理',
+        //   position: 'right',
+        // },
         // {
         //   href: 'https://github.com/1084350607',
         //   label: 'GitHub',
