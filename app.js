@@ -1,18 +1,18 @@
 const express = require('express')
-// const https = require('https')
-// const fs = require('fs')
+const https = require('https')
+const fs = require('fs')
 
 const app = express()
 
-// const options = {
-//   pfx: fs.readFileSync('./https/9278507_sunyesheng.cn.pfx'),
-//   passphrase: '50wtktr9',
-// }
-
-// const server = https.createServer(options, app)
-
 app.use(express.static('./build'))
 
-app.listen(80, () => {
-  console.log('http://127.0.0.1')
+const options = {
+  key: fs.readFileSync('./https/ngix/9278507_sunyesheng.cn.key.crt'),
+  cert: fs.readFileSync('./https/ngix/9278507_sunyesheng.cn.crt'),
+}
+
+const server = https.createServer(options, app)
+
+server.listen(443, () => {
+  console.log('https://127.0.0.1:443')
 })
