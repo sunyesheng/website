@@ -54,7 +54,7 @@ export default function HomepageFeatures() {
       <div style={props} className={Styles.title}>
         <div>
           Welcome to
-          <span>Sunyesheng</span>
+          <span> Sunyesheng</span>
           's Channel
         </div>
         <div class={Styles.subTitle}>A Rookie Rrogrammer</div>
