@@ -2,7 +2,7 @@
 module.exports = {
   title: '孙业盛',
   tagline: 'Dinosaurs are cool',
-  url: 'http://www.siyuanwa.cn',
+  url: 'http://www.sunyesheng.cn',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
