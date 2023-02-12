@@ -28,6 +28,11 @@ module.exports = {
         src: 'img/home/logo.ico',
       },
       items: [
+        {
+          to: '/',
+          label: '装修中',
+          position: 'right',
+        },
         // {
         //   to: '/',
         //   activeBasePath: 'blog',
