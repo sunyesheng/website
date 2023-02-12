@@ -7,8 +7,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/home/logo.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  // organizationName: 'facebook', // Usually your GitHub org/user name.
+  // projectName: 'docusaurus', // Usually your repo name.
   // staticDirectories: ['public', 'static'],
   themeConfig: {
     // 增加C++语言高亮提示，其他语言参考:  https://prismjs.com/#supported-languages
@@ -65,11 +65,11 @@ module.exports = {
           label: '资源整理',
           position: 'right',
         },
-        {
-          href: 'https://github.com/1084350607',
-          label: 'GitHub',
-          position: 'right',
-        },
+        // {
+        //   href: 'https://github.com/1084350607',
+        //   label: 'GitHub',
+        //   position: 'right',
+        // },
       ],
     },
     footer: {

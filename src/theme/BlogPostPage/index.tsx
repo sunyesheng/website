@@ -5,40 +5,41 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import Layout from '@theme/Layout';
-import BlogPostItem from '@theme/BlogPostItem';
-import BlogPostPaginator from '@theme/BlogPostPaginator';
-import type {Props} from '@theme/BlogPostPage';
-import TOC from '@theme/TOC';
-import EditThisPage from '@theme/EditThisPage';
-import {ThemeClassNames} from '@docusaurus/theme-common';
+import React from 'react'
+import Layout from '@theme/Layout'
+import BlogPostItem from '@theme/BlogPostItem'
+import BlogPostPaginator from '@theme/BlogPostPaginator'
+import type { Props } from '@theme/BlogPostPage'
+import TOC from '@theme/TOC'
+// import EditThisPage from '@theme/EditThisPage';
+import { ThemeClassNames } from '@docusaurus/theme-common'
 
 //@ts-ignore
 function BlogPostPage(props: Props): JSX.Element {
-  const {content: BlogPostContents, sidebar} = props;
-  const {frontMatter, metadata} = BlogPostContents;
-  const {title, description, nextItem, prevItem, editUrl} = metadata;
-  const {hide_table_of_contents: hideTableOfContents} = frontMatter;
+  const { content: BlogPostContents, sidebar } = props
+  const { frontMatter, metadata } = BlogPostContents
+  const { title, description, nextItem, prevItem, editUrl } = metadata
+  const { hide_table_of_contents: hideTableOfContents } = frontMatter
 
   return (
     <Layout
       title={title}
       description={description}
       wrapperClassName={ThemeClassNames.wrapper.blogPages}
-      pageClassName={ThemeClassNames.page.blogPostPage}>
+      pageClassName={ThemeClassNames.page.blogPostPage}
+    >
       {BlogPostContents && (
         <div className="container margin-vert--lg">
           <div className="row">
-
             <main className="col col--10">
               <BlogPostItem
                 frontMatter={frontMatter}
                 metadata={metadata}
-                isBlogPostPage>
+                isBlogPostPage
+              >
                 <BlogPostContents />
               </BlogPostItem>
-              <div>{editUrl && <EditThisPage editUrl={editUrl} />}</div>
+              {/* <div>{editUrl && <EditThisPage editUrl={editUrl} />}</div> */}
               {(nextItem || prevItem) && (
                 <div className="margin-vert--xl">
                   <BlogPostPaginator nextItem={nextItem} prevItem={prevItem} />
@@ -54,7 +55,7 @@ function BlogPostPage(props: Props): JSX.Element {
         </div>
       )}
     </Layout>
-  );
+  )
 }
 
-export default BlogPostPage;
+export default BlogPostPage
