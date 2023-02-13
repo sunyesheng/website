@@ -29,6 +29,11 @@ module.exports = {
       },
       items: [
         {
+          to: 'docs/practical/markdown/markdown',
+          label: '工具类',
+          position: 'right',
+        },
+        {
           to: '/',
           label: '装修中',
           position: 'right',
