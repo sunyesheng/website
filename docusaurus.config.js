@@ -29,6 +29,11 @@ module.exports = {
       },
       items: [
         {
+          to: 'docs/builder/webpack1',
+          label: '构建工具',
+          position: 'right',
+        },
+        {
           to: 'docs/practical/markdown',
           label: '工具类',
           position: 'right',

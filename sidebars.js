@@ -6,6 +6,10 @@ module.exports = {
   practical: {
     markdown: ['practical/markdown'],
   },
+  practical: {
+    webpack: ['builder/webpack1'],
+    vite: ['builder/vite1'],
+  },
   // algorithm: {
   //   二叉树: [
   //     'algorithm/二叉树/preOrder',
