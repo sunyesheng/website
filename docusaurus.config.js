@@ -29,6 +29,16 @@ module.exports = {
       },
       items: [
         {
+          to: 'docs/node/node1',
+          label: 'Node.js',
+          position: 'right',
+        },
+        {
+          to: 'docs/browser/browser1',
+          label: '浏览器',
+          position: 'right',
+        },
+        {
           to: 'docs/builder/webpack1',
           label: '构建工具',
           position: 'right',
@@ -36,11 +46,6 @@ module.exports = {
         {
           to: 'docs/practical/markdown',
           label: '工具类',
-          position: 'right',
-        },
-        {
-          to: '/',
-          label: '装修中',
           position: 'right',
         },
         // {

@@ -6,9 +6,15 @@ module.exports = {
   practical: {
     markdown: ['practical/markdown'],
   },
-  practical: {
+  builder: {
     webpack: ['builder/webpack1'],
     vite: ['builder/vite1'],
+  },
+  node: {
+    node: ['node/node1'],
+  },
+  browser: {
+    browser: ['browser/browser1'],
   },
   // algorithm: {
   //   二叉树: [
