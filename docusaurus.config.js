@@ -29,6 +29,11 @@ module.exports = {
       },
       items: [
         {
+          to: 'docs/front/javascript1',
+          label: '前端',
+          position: 'right',
+        },
+        {
           to: 'docs/node/node1',
           label: 'Node.js',
           position: 'right',
@@ -36,6 +41,11 @@ module.exports = {
         {
           to: 'docs/browser/browser1',
           label: '浏览器',
+          position: 'right',
+        },
+        {
+          to: 'docs/engineering/engineering1',
+          label: '工程化',
           position: 'right',
         },
         {
