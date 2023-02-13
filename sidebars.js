@@ -4,7 +4,7 @@ module.exports = {
     前端开发: [],
   },
   practical: {
-    MarkDown: ['practical/markdown/markdown'],
+    markdown: ['practical/markdown'],
   },
   // algorithm: {
   //   二叉树: [

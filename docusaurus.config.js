@@ -29,7 +29,7 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/practical/markdown/markdown',
+          to: 'docs/practical/markdown',
           label: '工具类',
           position: 'right',
         },

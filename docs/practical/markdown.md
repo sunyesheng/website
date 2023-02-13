@@ -67,7 +67,7 @@ console.log('hello world') //javasrcipt 语法代码块
 
 ### 2.5 图像
 
-![Adobe Logo](../../../static/img/docusaurus.png 'Hover text')
+![Adobe Logo](../../static/img/docusaurus.png 'Hover text')
 
 ```
 ![Adobe Logo](url 'Hover text')
