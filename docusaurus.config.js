@@ -100,7 +100,7 @@ module.exports = {
           ],
         },
         {
-          to: 'docs/algorithm/二叉树/preorder',
+          to: 'docs/algorithm/二叉树/preOrder',
           label: '算法',
           position: 'right',
         },
