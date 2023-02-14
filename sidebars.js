@@ -5,6 +5,7 @@ module.exports = {
   },
   practical: {
     markdown: ['practical/markdown'],
+    algolia: ['practical/algolia'],
   },
   builder: {
     webpack: ['builder/webpack1'],

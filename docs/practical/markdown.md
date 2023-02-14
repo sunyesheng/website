@@ -3,7 +3,7 @@ id: markdown
 title: MarkDown 基础使用
 ---
 
-工欲善其事，必先利其器；MarkDown 是做好开发的不可获取的工具。
+工欲善其事，必先利其器；MarkDown 是做好开发的不可或缺的工具。
 
 ## 1. 什么是 MarkDown？
 
