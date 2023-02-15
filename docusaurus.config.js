@@ -2,7 +2,7 @@
 module.exports = {
   title: '孙业盛',
   tagline: 'Dinosaurs are cool',
-  url: 'http://www.sunyesheng.cn',
+  url: 'https://sunyesheng.cn',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -12,35 +12,35 @@ module.exports = {
   // staticDirectories: ['public', 'static'],
   themeConfig: {
     // 增加C++语言高亮提示，其他语言参考:  https://prismjs.com/#supported-languages
-    // algolia: {
-    //   // The application ID provided by Algolia
-    //   appId: '03CQWE9VO8',
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'GD9V1PD0YO',
 
-    //   // Public API key: it is safe to commit it
-    //   apiKey: '48a8062591613f537fca1a896af8b87e',
+      // Public API key: it is safe to commit it
+      apiKey: '9ed53a6aca260d7c24fec5cec79d4584',
 
-    //   indexName: 'dev-sunyesheng',
+      indexName: 'sunyesheng',
 
-    //   // Optional: see doc section below
-    //   contextualSearch: true,
+      // Optional: see doc section below
+      // contextualSearch: true,
 
-    //   // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-    //   externalUrlRegex: 'external\\.com|domain\\.com',
+      // // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+      // externalUrlRegex: 'external\\.com|domain\\.com',
 
-    //   // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
-    //   replaceSearchResultPathname: {
-    //     from: '/docs/', // or as RegExp: /\/docs\//
-    //     to: '/',
-    //   },
+      // // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
+      // replaceSearchResultPathname: {
+      //   from: '/docs/', // or as RegExp: /\/docs\//
+      //   to: '/',
+      // },
 
-    //   // Optional: Algolia search parameters
-    //   searchParameters: {},
+      // // Optional: Algolia search parameters
+      // searchParameters: {},
 
-    //   // Optional: path for search page that enabled by default (`false` to disable it)
-    //   searchPagePath: 'search',
+      // // Optional: path for search page that enabled by default (`false` to disable it)
+      // searchPagePath: 'search',
 
-    //   //... other Algolia params
-    // },
+      //... other Algolia params
+    },
     prism: {
       additionalLanguages: ['cpp'],
     },
