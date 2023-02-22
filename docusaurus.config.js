@@ -34,11 +34,11 @@ module.exports = {
         src: 'img/home/logo.ico',
       },
       items: [
-        // {
-        //   to: 'docs/front/javascript1',
-        //   label: '前端',
-        //   position: 'right',
-        // },
+        {
+          to: 'docs/front/javascript1',
+          label: '前端',
+          position: 'right',
+        },
         // {
         //   to: 'docs/node/node1',
         //   label: 'Node.js',
@@ -64,18 +64,18 @@ module.exports = {
           label: '工具类',
           position: 'right',
         },
-        {
-          to: '/',
-          activeBasePath: 'blog',
-          label: '前端',
-          position: 'right',
-          items: [
-            {
-              label: 'Javascript',
-              to: '/blog/tags/Javascript',
-            },
-          ],
-        },
+        // {
+        //   to: '/',
+        //   activeBasePath: 'blog',
+        //   label: '前端',
+        //   position: 'right',
+        //   items: [
+        //     {
+        //       label: 'Javascript',
+        //       to: '/blog/tags/Javascript',
+        //     },
+        //   ],
+        // },
         {
           to: 'docs/algorithm/二叉树/preOrder',
           label: '算法',

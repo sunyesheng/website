@@ -23,7 +23,7 @@ module.exports = {
   front: {
     'html&css': ['front/css_html1'],
     javascript: ['front/javascript1'],
-    react: ['front/react1'],
+    react: ['front/react-hooks-1','front/react-react18'],
     vue: ['front/vue1'],
   },
   algorithm: {
