@@ -10,7 +10,8 @@ const options = {
 const httpApp = express()
 const httpsApp = express()
 
-httpsApp.use(express.static('./build'))
+// httpsApp.use(express.static('./build'))
+httpsApp.use(express.static('./threejs'))
 
 const server = https.createServer(options, httpsApp)
 
