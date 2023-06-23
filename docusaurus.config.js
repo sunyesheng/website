@@ -34,77 +34,22 @@ module.exports = {
         src: 'img/home/logo.ico',
       },
       items: [
-        // {
-        //   to: 'docs/front/javascript1',
-        //   label: '前端',
-        //   position: 'right',
-        // },
-        // {
-        //   to: 'docs/node/node1',
-        //   label: 'Node.js',
-        //   position: 'right',
-        // },
-        // {
-        //   to: 'docs/browser/browser1',
-        //   label: '浏览器',
-        //   position: 'right',
-        // },
-        // {
-        //   to: 'docs/engineering/engineering1',
-        //   label: '工程化',
-        //   position: 'right',
-        // },
-        // {
-        //   to: 'docs/builder/webpack1',
-        //   label: '构建工具',
-        //   position: 'right',
-        // },
         {
           to: 'docs/practical/markdown',
-          label: '工具类',
-          position: 'right',
-        },
-        {
-          to: '/',
-          activeBasePath: 'blog',
-          label: '前端',
-          position: 'right',
-          items: [
-            {
-              label: 'Javascript',
-              to: '/blog/tags/Javascript',
-            },
-          ],
-        },
-        {
-          to: 'docs/algorithm/二叉树/preOrder',
-          label: '算法',
-          position: 'right',
-        },
-        {
-          to: 'docs/design/table',
-          label: '技术设计',
-          position: 'right',
-        },
-        {
-          to: 'docs/project/auth',
-          label: '工程化',
-          position: 'right',
-        },
-        {
-          to: 'docs/react/react-hooks',
-          label: 'React源码',
+          label: '学习',
           position: 'right',
         },
         // {
-        //   to: 'docs/resources/resources-intro',
-        //   label: '资源整理',
+        //   to: '/',
+        //   activeBasePath: 'blog',
+        //   label: '前端',
         //   position: 'right',
-        // },
-        // {
-        //   href: 'https://github.com/1084350607',
-        //   label: 'GitHub',
-        //   position: 'right',
+        //   items: [
+        //     {
+        //       label: 'Javascript',
+        //       to: '/blog/tags/Javascript',
+        //     },
+        //   ],
         // },
       ],
     },
